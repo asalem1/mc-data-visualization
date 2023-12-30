@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import {DashboardPage} from './Dashboard';
+import {DashboardPage} from './dashboard/Dashboard';
 import {PageHeader} from './PageHeader';
 import {DashboardContextProvider} from './context/dashboard';
 

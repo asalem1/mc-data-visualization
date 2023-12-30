@@ -8,11 +8,7 @@
 }
 
 .page__header h1 {
-  letter-spacing: 0;
-  text-transform: none;
-  font-style: normal;
-  cursor: default;
-  display: inline-block;
   color: #fff;
   line-height: 1rem;
+  font-size: 2rem;
 }

@@ -99,12 +99,6 @@ export const AddCell = () => {
                 isDisabled
                 value={ChartType.HEATMAP}
               />
-              <RadioItem
-                name="Bar Chart"
-                description="Coming Soon"
-                isDisabled
-                value={ChartType.BAR}
-              />
             </RadioGroup>
             <RadioGroup
               label="Climate Category"
