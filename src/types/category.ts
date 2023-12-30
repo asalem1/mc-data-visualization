@@ -1,8 +1,8 @@
 export const categories = [
-  'meantemp',
+  'mean_temp',
   'humidity',
   'wind_speed',
-  'meanpressure',
+  'mean_pressure',
 ] as const;
 
 export type Category = (typeof categories)[number];

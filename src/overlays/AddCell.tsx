@@ -12,6 +12,7 @@ import {Cell} from '../types/cell';
 import {v4 as uuidv4} from 'uuid';
 import {getClimateCategories} from '../api/climate';
 import {Category} from '../types/category';
+import {formatCategory} from '../utils/format';
 
 export const AddCell = () => {
   const {add} = useContext(DashboardContext);
@@ -109,8 +110,10 @@ export const AddCell = () => {
               {categories.map((category) => (
                 <RadioItem
                   key={category}
-                  name={category}
-                  description={category}
+                  name={formatCategory(category)}
+                  description={`Data associated with the ${formatCategory(
+                    category
+                  )}`}
                   value={category}
                 />
               ))}

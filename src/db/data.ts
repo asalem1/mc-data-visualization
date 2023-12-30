@@ -1,4 +1,4 @@
-export const data = `date,meantemp,humidity,wind_speed,meanpressure
+export const data = `date,mean_temp,humidity,wind_speed,mean_pressure
 2013-01-01,10.0,84.5,0.0,1015.6666666666666
 2013-01-02,7.4,92.0,2.98,1017.8
 2013-01-03,7.166666666666667,87.0,4.633333333333334,1018.6666666666666
