@@ -15,7 +15,7 @@
   transition-property: color;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
-  cursor: default;
+  cursor: pointer;
   outline: 0;
 }
 
@@ -57,15 +57,38 @@
 
 .dialog-action__confirm-button {
   background-color: #ef4444;
-  color: #ffffff;
+  color: #fff;
   border: 1px solid #dc2626;
   transition: background-color 0.3s, border-color 0.3s;
 }
 
 .dialog-action__confirm-button:hover {
-  border-color: #dc2626;
+  border-color: #3b82f6;
 }
 
 .dialog-action__confirm-button:active {
-  background-color: #dc2626;
+  background-color: #3b82f6;
+}
+
+.dialog-action__create-button {
+  background-color: #4888ef;
+  color: #fff;
+  border: 1px solid #3b82f6;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.dialog-action__create-button:hover {
+  border-color: #3b82f6;
+}
+
+.dialog-action__create-button:active {
+  background-color: #3b82f6;
+}
+
+.dialog-action__create-button[data-disabled='true'],
+.dialog-action__create-button[data-disabled='true']:hover {
+  background-color: #f4f4f4;
+  color: #999;
+  cursor: not-allowed;
+  border: 1px solid #f4f4f4;
 }

@@ -52,7 +52,7 @@
 .radio-group__item.not-selected[data-disabled='true'] {
   opacity: 0.6;
   background-color: #f4f4f4;
-  color: #999999;
+  color: #999;
   cursor: not-allowed;
 }
 

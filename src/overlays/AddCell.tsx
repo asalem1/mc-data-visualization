@@ -27,6 +27,12 @@ export const AddCell = () => {
     setCellName(value);
   };
 
+  const resetState = () => {
+    setIsOpen(false);
+    setSelectedCategory(categories[0]);
+    setCellName('');
+  };
+
   const handleOnSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     if (!selectedCategory) {
       throw new Error('You must select a category');
@@ -39,8 +45,7 @@ export const AddCell = () => {
       name: cellName,
     };
     add(cell);
-    setCellName('');
-    setIsOpen(false);
+    resetState();
   };
 
   const handleClimateCategoryChange = (value: Category) => {
@@ -120,13 +125,19 @@ export const AddCell = () => {
             </RadioGroup>
           </Overlay.Body>
           <Overlay.Footer>
-            {/* TODO: style these buttons and invalidate on cancel */}
-            <Button variant="secondary" onPress={() => setIsOpen(false)}>
+            <AriaButton
+              className="dialog-button__action dialog-action__cancel-button"
+              onPress={resetState}
+            >
               Cancel
-            </Button>
-            <Button variant="primary" type="submit">
+            </AriaButton>
+            <AriaButton
+              className="dialog-button__action dialog-action__create-button"
+              type="submit"
+              isDisabled={cellName === ''}
+            >
               Create Cell
-            </Button>
+            </AriaButton>
           </Overlay.Footer>
         </Form>
       </Overlay>
