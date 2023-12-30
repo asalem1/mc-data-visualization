@@ -1,0 +1,28 @@
+.input__container {
+  position: relative;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.input__label {
+  position: relative;
+  bottom: 4px;
+  font-size: 16px;
+  color: #555;
+  pointer-events: none;
+  transition: transform 0.3s, font-size 0.3s;
+}
+
+.input__field {
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input__field:focus {
+  border-color: #2196f3;
+  box-shadow: 0 0 5px rgba(33, 150, 243, 0.5);
+}

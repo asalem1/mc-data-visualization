@@ -1,0 +1,12 @@
+.radio-group__container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.radio-group__label {
+  font-size: 1.25rem;
+  color: #1a202c;
+  font-weight: 600;
+}

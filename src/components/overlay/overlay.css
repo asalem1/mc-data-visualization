@@ -1,0 +1,105 @@
+.modal-overlay__wrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  overflow-y: auto;
+  background: rgba(0, 0, 0, 0.25);
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  text-align: center;
+  backdrop-filter: blur(4px);
+}
+
+.modal-overlay__wrapper.animate-in {
+  animation: fade-in 300ms ease-out;
+}
+
+.modal-overlay__wrapper.animate-out {
+  animation: fade-out 200ms ease-in;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.modal-wrapper {
+  width: 100%;
+  max-width: 32rem;
+  overflow: hidden;
+  border-radius: 1rem;
+  background-color: #fff;
+  padding: 1.5rem;
+  text-align: left;
+  vertical-align: middle;
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.1);
+}
+
+.modal-wrapper.animate-in {
+  animation: zoom-in 300ms ease-out;
+}
+
+.modal-wrapper.animate-out {
+  animation: zoom-out 200ms ease-in;
+}
+
+@keyframes zoom-in {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes zoom-out {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+}
+
+.dialog__wrapper {
+  outline: none;
+  position: relative;
+}
+
+.overlay__header-wrapper {
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 1.5;
+  margin-top: 0;
+  color: #4b5563;
+}
+
+.overlay-actions__button-wrapper {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
