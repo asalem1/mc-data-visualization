@@ -26,6 +26,16 @@ export const Cell = ({cell}: Props) => {
 
   useEffect(() => {
     const options = {
+      theme: {
+        mode: 'dark',
+      },
+      title: {
+        text: cell.name,
+        margin: 10,
+        style: {
+          fontSize: '20px',
+        },
+      },
       chart: {
         type: 'line',
         zoom: {
@@ -36,6 +46,7 @@ export const Cell = ({cell}: Props) => {
         toolbar: {
           autoSelected: 'zoom',
         },
+        height: 350,
         fill: {
           type: 'gradient',
           gradient: {
@@ -46,18 +57,9 @@ export const Cell = ({cell}: Props) => {
             stops: [0, 90, 100],
           },
         },
-        title: {
-          text: 'Stock Price Movement', // TODO(ariel): no idea what to do here
-          align: 'left',
-        },
         yaxis: {
-          align: 'right',
-          decimalsInFloat: 2,
           labels: {
             show: true,
-          },
-          style: {
-            colors: ['white'],
           },
           title: {
             text: cell.category,
@@ -83,8 +85,6 @@ export const Cell = ({cell}: Props) => {
     const chart = new ApexCharts(chartRef.current, options);
 
     if (chart && cellData.dates.length) {
-      console.log('rendering');
-      console.log({cellData});
       chart.render();
     }
   }, [cellData, cell.name]);
