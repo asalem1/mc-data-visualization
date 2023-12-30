@@ -1,3 +1,5 @@
+@import url('./variables.css');
+
 .page__header {
   padding: 24px;
   display: flex;
@@ -8,7 +10,7 @@
 }
 
 .page__header h1 {
-  color: #fff;
+  color: var(--white);
   line-height: 1rem;
   font-size: 2rem;
 }

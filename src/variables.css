@@ -1,0 +1,36 @@
+:root {
+  --background-color-primary: #282c34;
+  --background-color-secondary: #f4f4f4;
+
+  --radio-item-inactive-hover: #e5f2ff;
+  --radio-item-pressed: #f0f9ff;
+
+  --white: #fff;
+  --light-grey: #ccc;
+
+  --input-label-color: #555;
+  --radio-group-label-color: #1a202c;
+
+  --disabled-background-color: #f4f4f4;
+  --disabled-text-color: #999;
+
+  --box-shadow-primary: rgba(0, 0, 0, 0.1);
+  --box-shadow-secondary: rgba(0, 0, 0, 0.06);
+  --box-shadow-tertiary: rgba(255, 255, 255, 0.8);
+
+  --overlay-blur-background-color: rgba(0, 0, 0, 0.25);
+
+  --danger-button-background-color: ##ef4444;
+  --danger-button-border-color: #dc2626;
+  --confirm-button-background-color: #3b82f6;
+  --cancel-button-background-color: #a0aec0;
+  --cancel-button-hover-background-color: #4a5568;
+  --cancel-button-text-color: #1a202c;
+
+  --active-selection: #2563eb;
+
+  --overlay-header-text-color: #4b5563;
+
+  --primary-text-color: var(--radio-group-label-color);
+  --secondary-text-color: #718096;
+}

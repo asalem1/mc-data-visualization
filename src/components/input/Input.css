@@ -1,3 +1,5 @@
+@import url('../../variables.css');
+
 .input__container {
   position: relative;
   margin-bottom: 16px;
@@ -9,7 +11,7 @@
   position: relative;
   bottom: 4px;
   font-size: 16px;
-  color: #555;
+  color: var(--input-label-color);
   pointer-events: none;
   transition: transform 0.3s, font-size 0.3s;
 }
@@ -23,6 +25,6 @@
 }
 
 .input__field:focus {
-  border-color: #2196f3;
+  border-color: var(--active-selection);
   box-shadow: 0 0 5px rgba(33, 150, 243, 0.5);
 }

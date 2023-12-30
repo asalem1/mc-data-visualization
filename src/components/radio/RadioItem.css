@@ -1,11 +1,13 @@
+@import url('../../variables.css');
+
 .radio-group__item {
   position: relative;
   display: flex;
   cursor: default;
   border-radius: 0.375rem;
   padding: 1rem 1.5rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 6px -1px var(--box-shadow-primary),
+    0 2px 4px -1px var(--box-shadow-secondary);
   outline: none;
   background-clip: padding-box;
   border-width: 1px;
@@ -14,57 +16,58 @@
 
 .radio-group__item.focused {
   outline: none;
-  box-shadow: 0 0 0 2px #2563eb, 0 0 0 4px rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 0 2px var(--active-selection),
+    0 0 0 4px var(--box-shadow-tertiary);
 }
 .radio-group__detail-name {
   font-size: 1.125rem;
   font-weight: 600;
-  color: #1a202c;
+  color: var(--primary-text-color);
 }
 
 .radio-group__item.selected {
-  background-color: #2563eb;
-  border-color: rgba(255, 255, 255, 0.3);
-  color: #2563eb;
+  background-color: var(--active-selection);
+  border-color: var(--overlay-blur-background-color);
+  color: var(--active-selection);
 }
 
 .radio-group__detail-text {
   display: inline;
-  color: #718096;
+  color: var(--secondary-text-color);
 }
 
 .radio-group__item.selected .radio-group__detail-name {
-  color: #fff;
+  color: var(--white);
 }
 .radio-group__item.selected .radio-group__detail-text {
-  color: #ccc;
+  color: var(--light-grey);
 }
 .radio-group__item.not-selected {
-  background-color: #fff;
+  background-color: var(--white);
   border-color: transparent;
-  color: #2563eb;
+  color: var(--active-selection);
 }
 .radio-group__item.not-selected:hover {
-  background-color: #e5f2ff;
+  background-color: var(--radio-item-inactive-hover);
   cursor: pointer;
 }
 
 .radio-group__item.not-selected[data-disabled='true'] {
   opacity: 0.6;
-  background-color: #f4f4f4;
-  color: #999;
+  background-color: var(--background-color-secondary);
+  color: var(--disabled-text-color);
   cursor: not-allowed;
 }
 
-.radio-group__item.not-selected[data-disabled='true']
-  .radio-group__detail-text {
+.radio-group__item.not-selected[data-disabled='true'],
+.radio-group__detail-text {
   font-style: italic;
 }
 
 .pressed {
-  background-color: #f0f9ff;
+  background-color: var(--radio-item-pressed);
 }
 
 .inactive {
-  background-color: #fff;
+  background-color: var(--white);
 }

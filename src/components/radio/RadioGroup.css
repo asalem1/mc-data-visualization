@@ -1,3 +1,5 @@
+@import url('../../variables.css');
+
 .radio-group__container {
   display: flex;
   flex-direction: column;
@@ -7,6 +9,6 @@
 
 .radio-group__label {
   font-size: 1.25rem;
-  color: #1a202c;
+  color: var(--radio-group-label-color);
   font-weight: 600;
 }
