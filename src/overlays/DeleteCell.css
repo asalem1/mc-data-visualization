@@ -25,7 +25,6 @@
 }
 
 .dialog-action__cancel-button {
-  background-color: #cbd5e1;
   color: #1a202c;
   border: 1px solid #a0aec0;
   transition: background-color 0.3s, border-color 0.3s;
