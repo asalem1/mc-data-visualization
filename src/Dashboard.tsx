@@ -1,5 +1,6 @@
 import React, {FunctionComponent, useContext} from 'react';
 import {DashboardContext} from './context/dashboard';
+import {Cell} from './components/Cell';
 
 export const DashboardPage: FunctionComponent = (props) => {
   const {cells} = useContext(DashboardContext);
@@ -7,9 +8,8 @@ export const DashboardPage: FunctionComponent = (props) => {
 
   return (
     <div className="dashboard-page__wrapper">
-      {/* TODO: hook up the visualization cell */}
       {cells.map((cell) => (
-        <React.Fragment key={cell.id}>{JSON.stringify(cell)}</React.Fragment>
+        <Cell key={cell.id} cell={cell} />
       ))}
     </div>
   );
