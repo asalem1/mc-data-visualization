@@ -1,4 +1,4 @@
 export enum ChartType {
-  HEATMAP = 'heatmap',
+  BAR = 'bar',
   LINE = 'line',
 }

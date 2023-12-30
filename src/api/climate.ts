@@ -1,13 +1,14 @@
-import {categories, Category} from '../types/category';
+import {categories} from '../types/category';
 import {data} from '../db/data';
+import {Cell} from '../types/cell';
+import {ChartType} from '../types/chart';
 
 export const getClimateCategories = () => {
   return categories;
 };
 
-export const getClimateDataByCategory = (category: Category) => {
-  console.log({category});
-  if (!category) {
+export const getClimateDataByCategory = (cell: Cell) => {
+  if (!cell.category) {
     throw new Error(
       `Please include a valid category of ${categories.join(', ')}`
     );
@@ -22,7 +23,7 @@ export const getClimateDataByCategory = (category: Category) => {
     if (headers[i] === 'date') {
       dateIndex = i;
     }
-    if (headers[i] === category) {
+    if (headers[i] === cell.category) {
       categoryIndex = i;
     }
   }
@@ -39,14 +40,29 @@ export const getClimateDataByCategory = (category: Category) => {
   }
 
   const result = {
-    dates: [] as string[],
-    data: [] as string[],
-  };
+    data: [] as any[],
+  } as any;
+
+  console.log({chartType: cell.chartType});
 
   for (let i = 0; i < rows.length; i++) {
     const values = rows[i].split(',');
-    result.dates.push(values[dateIndex]);
-    result.data.push(Number(values[categoryIndex]).toFixed(2));
+    const date = values[dateIndex];
+    const value = Number(values[categoryIndex]).toFixed(2);
+    if (cell.chartType === ChartType.LINE) {
+      if (result.dates) {
+        result.dates.push(date);
+      } else {
+        result.dates = [date];
+      }
+      result.data.push(value);
+    }
+    if (cell.chartType === ChartType.BAR) {
+      result.data.push({
+        x: date,
+        y: value,
+      });
+    }
   }
 
   return result;

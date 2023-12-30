@@ -31,6 +31,7 @@ export const AddCell = () => {
     setIsOpen(false);
     setSelectedCategory(categories[0]);
     setCellName('');
+    setChartType(ChartType.LINE);
   };
 
   const handleOnSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -94,10 +95,9 @@ export const AddCell = () => {
                 value={ChartType.LINE}
               />
               <RadioItem
-                name="Heatmap"
-                description="Coming Soon"
-                isDisabled
-                value={ChartType.HEATMAP}
+                name="Bar Chart"
+                description="Bar Chart"
+                value={ChartType.BAR}
               />
             </RadioGroup>
             <RadioGroup
