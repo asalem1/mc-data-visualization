@@ -6,6 +6,10 @@ This application is currently a front-end application with infrastructure in pla
 
 The user can create a line graph for either the mean temperature, humidity, wind speed, or mean pressure with each visualization being contained in a dashboard cell. Users can create and delete cells in a dashboard at will.
 
+The app has been deployed and can be accessed here:
+
+https://asalem1.github.io/mc-data-visualization/
+
 ## Major dependencies/packages
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and the TypeScript template.
