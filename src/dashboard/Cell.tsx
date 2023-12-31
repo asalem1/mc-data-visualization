@@ -21,9 +21,8 @@ export const Cell = ({cell, handleDeleteClick}: Props) => {
     data: [] as number[],
     dates: [] as string[],
   });
-  const [hasMountedGraph, setHasMountedGraph] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  // const [chartInstance, setChartInstance] = useState<ApexCharts | null>(null);
+  const [chartInstance, setChartInstance] = useState<ApexCharts | null>(null);
 
   const getCellData = useCallback(() => {
     const response = getClimateDataByCategory(cell);
@@ -44,45 +43,29 @@ export const Cell = ({cell, handleDeleteClick}: Props) => {
     }
   };
 
-  const triggerMountOnEvent = () => {
-    setHasMountedGraph(true);
-  };
-
   useEffect(() => {
     let options: any = {};
     if (cell.chartType === ChartType.LINE) {
-      options = getOptionsByChartType(
-        cell,
-        cellData.data,
-        cellData.dates,
-        triggerMountOnEvent
-      );
+      options = getOptionsByChartType(cell, cellData.data, cellData.dates);
     }
     if (cell.chartType === ChartType.BAR) {
       const startIndex = (currentPage - 1) * BAR_COLUMNS_PER_PAGE;
       const endIndex = startIndex + BAR_COLUMNS_PER_PAGE;
       const data = cellData.data.slice(startIndex, endIndex);
       const dates = cellData.dates.slice(startIndex, endIndex);
-      options = getOptionsByChartType(cell, data, dates, triggerMountOnEvent);
+      options = getOptionsByChartType(cell, data, dates);
     }
 
-    // if (chartInstance && hasMountedGraph) {
-    //   // @ts-ignore
-    //   // chartInstance.updateOptions(options);
-    // } else {
-    const chart = new ApexCharts(chartRef.current, options);
-    if (chart && cellData.data.length) {
-      chart.render();
-      // setChartInstance(chart);
+    if (chartInstance && ChartType.BAR) {
+      chartInstance.updateOptions(options);
+    } else {
+      const chart = new ApexCharts(chartRef.current, options);
+      if (chart && cellData.data.length) {
+        chart.render();
+        setChartInstance(chart);
+      }
     }
-  }, [
-    cellData,
-    cell,
-    cell.chartType,
-    currentPage,
-    hasMountedGraph,
-    // chartInstance,
-  ]);
+  }, [cellData, cell, cell.chartType, currentPage, chartInstance]);
 
   return (
     <div className="dashboard-cell__wrapper">

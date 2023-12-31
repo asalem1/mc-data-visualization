@@ -4,8 +4,7 @@ import {ChartType} from '../types/chart';
 export function getOptionsByChartType(
   cell: Cell,
   data: number[],
-  dates: string[],
-  triggerMountFunction: () => void
+  dates: string[]
 ) {
   const commonAttributes = {
     theme: {
@@ -19,11 +18,6 @@ export function getOptionsByChartType(
       },
     },
   };
-  // const commonEvents = {
-  //   mounted: () => {
-  //     triggerMountFunction();
-  //   },
-  // };
   if (cell.chartType === ChartType.LINE) {
     return Object.assign(commonAttributes, {
       chart: {
@@ -33,7 +27,6 @@ export function getOptionsByChartType(
           enabled: true,
           autoScaleYaxis: true,
         },
-        // events: commonEvents,
         toolbar: {
           autoSelected: 'zoom',
         },
@@ -79,7 +72,6 @@ export function getOptionsByChartType(
       chart: {
         type: 'bar',
         height: 350,
-        // events: commonEvents,
         grid: {
           padding: {
             left: 30,
