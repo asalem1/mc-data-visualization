@@ -2,14 +2,14 @@
 
 .input__container {
   position: relative;
-  margin-bottom: 16px;
+  margin-bottom: var(--spacing-4);
   display: flex;
   flex-direction: column;
 }
 
 .input__label {
   position: relative;
-  bottom: 4px;
+  bottom: var(--spacing-1);
   font-size: 16px;
   color: var(--input-label-color);
   pointer-events: none;
@@ -17,7 +17,7 @@
 }
 
 .input__field {
-  padding: 12px;
+  padding: var(--spacing-3);
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 4px;

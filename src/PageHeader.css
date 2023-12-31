@@ -1,7 +1,7 @@
 @import url('./variables.css');
 
 .page__header {
-  padding: 24px;
+  padding: var(--spacing-6);
   display: flex;
   flex-direction: row;
   justify-content: space-between;

@@ -96,7 +96,7 @@ export const AddCell = () => {
               />
               <RadioItem
                 name="Bar Chart"
-                description="Bar Chart"
+                description="Zoomable, Paginated Bar Chart"
                 value={ChartType.BAR}
               />
             </RadioGroup>

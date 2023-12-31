@@ -1,10 +1,10 @@
 @import url('../variables.css');
 
 .dashboard-cell__wrapper {
-  padding: 0 64px 0 32px;
+  padding: 0 var(--spacing-8) 0 var(--spacing-7);
   position: relative;
   display: flex;
-  gap: 1rem;
+  gap: var(--spacing-2);
 }
 
 .dashboard-cell__wrapper > div:first-child {
@@ -15,13 +15,13 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding-bottom: 16px;
+  padding-bottom: var(--spacing-4);
 }
 
 .dashboard-cell__pagination-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--spacing-2);
 }
 
 .open-dialog__button {
@@ -31,7 +31,7 @@
   background: var(--overlay-blur-background-color);
   border: 1px solid #fff2;
   width: 75px;
-  padding: 0.5em;
+  padding: var(--spacing-2);
   font-size: 1rem;
   outline: none;
   transition: background-color 0.3s, opacity 0.3s;
