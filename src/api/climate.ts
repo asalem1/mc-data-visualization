@@ -1,7 +1,6 @@
 import {categories} from '../types/category';
 import {data} from '../db/data';
 import {Cell} from '../types/cell';
-import {ChartType} from '../types/chart';
 
 export const getClimateCategories = () => {
   return categories;
@@ -40,29 +39,16 @@ export const getClimateDataByCategory = (cell: Cell) => {
   }
 
   const result = {
-    data: [] as any[],
+    data: [] as number[],
+    dates: [] as string[],
   } as any;
-
-  console.log({chartType: cell.chartType});
 
   for (let i = 0; i < rows.length; i++) {
     const values = rows[i].split(',');
     const date = values[dateIndex];
     const value = Number(values[categoryIndex]).toFixed(2);
-    if (cell.chartType === ChartType.LINE) {
-      if (result.dates) {
-        result.dates.push(date);
-      } else {
-        result.dates = [date];
-      }
-      result.data.push(value);
-    }
-    if (cell.chartType === ChartType.BAR) {
-      result.data.push({
-        x: date,
-        y: value,
-      });
-    }
+    result.dates.push(date);
+    result.data.push(parseFloat(value));
   }
 
   return result;

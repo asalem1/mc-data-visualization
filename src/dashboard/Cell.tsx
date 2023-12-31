@@ -1,22 +1,32 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import ApexCharts from 'apexcharts';
+import {Button} from 'react-aria-components';
 import type {Cell as CellType} from '../types/cell';
 import {getClimateDataByCategory} from '../api/climate';
+import {ChartType} from '../types/chart';
+import {getOptionsByChartType} from '../utils/graph';
+import './Cell.css';
 
 type Props = {
   cell: CellType;
+  handleDeleteClick: () => void;
 };
 
-export const Cell = ({cell}: Props) => {
+const BAR_COLUMNS_PER_PAGE = 100;
+
+export const Cell = ({cell, handleDeleteClick}: Props) => {
   const chartRef = useRef(null);
 
   const [cellData, setCellData] = useState({
-    data: [] as string[],
+    data: [] as number[],
     dates: [] as string[],
   });
+  const [hasMountedGraph, setHasMountedGraph] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  // const [chartInstance, setChartInstance] = useState<ApexCharts | null>(null);
 
   const getCellData = useCallback(() => {
-    const response = getClimateDataByCategory(cell.category);
+    const response = getClimateDataByCategory(cell);
     setCellData(response);
   }, [cell]);
 
@@ -24,70 +34,85 @@ export const Cell = ({cell}: Props) => {
     getCellData();
   }, [cell.id]);
 
-  useEffect(() => {
-    const options = {
-      theme: {
-        mode: 'dark',
-      },
-      title: {
-        text: cell.name,
-        margin: 10,
-        style: {
-          fontSize: '20px',
-        },
-      },
-      chart: {
-        type: 'line',
-        zoom: {
-          type: 'x',
-          enabled: true,
-          autoScaleYaxis: true,
-        },
-        toolbar: {
-          autoSelected: 'zoom',
-        },
-        height: 350,
-        fill: {
-          type: 'gradient',
-          gradient: {
-            shadeIntensity: 1,
-            inverseColors: false,
-            opacityFrom: 0.5,
-            opacityTo: 0,
-            stops: [0, 90, 100],
-          },
-        },
-        yaxis: {
-          labels: {
-            show: true,
-          },
-          title: {
-            text: cell.category,
-          },
-        },
-        xaxis: {
-          type: 'datetime',
-        },
-        tooltip: {
-          shared: false,
-        },
-      },
-      series: [
-        {
-          name: cell.name,
-          data: cellData.data,
-        },
-      ],
-      xaxis: {
-        categories: cellData.dates,
-      },
-    };
-    const chart = new ApexCharts(chartRef.current, options);
+  const handleNextPage = () => {
+    setCurrentPage(currentPage + 1);
+  };
 
-    if (chart && cellData.dates.length) {
-      chart.render();
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
     }
-  }, [cellData, cell.name]);
+  };
 
-  return <div ref={chartRef} />;
+  const triggerMountOnEvent = () => {
+    setHasMountedGraph(true);
+  };
+
+  useEffect(() => {
+    let options: any = {};
+    if (cell.chartType === ChartType.LINE) {
+      options = getOptionsByChartType(
+        cell,
+        cellData.data,
+        cellData.dates,
+        triggerMountOnEvent
+      );
+    }
+    if (cell.chartType === ChartType.BAR) {
+      const startIndex = (currentPage - 1) * BAR_COLUMNS_PER_PAGE;
+      const endIndex = startIndex + BAR_COLUMNS_PER_PAGE;
+      const data = cellData.data.slice(startIndex, endIndex);
+      const dates = cellData.dates.slice(startIndex, endIndex);
+      options = getOptionsByChartType(cell, data, dates, triggerMountOnEvent);
+    }
+
+    // if (chartInstance && hasMountedGraph) {
+    //   // @ts-ignore
+    //   // chartInstance.updateOptions(options);
+    // } else {
+    const chart = new ApexCharts(chartRef.current, options);
+    if (chart && cellData.data.length) {
+      chart.render();
+      // setChartInstance(chart);
+    }
+  }, [
+    cellData,
+    cell,
+    cell.chartType,
+    currentPage,
+    hasMountedGraph,
+    // chartInstance,
+  ]);
+
+  return (
+    <div className="dashboard-cell__wrapper">
+      <div ref={chartRef} />
+      <div className="dashboard-cell__actions">
+        <Button className="open-dialog__button" onPress={handleDeleteClick}>
+          &#128465;
+        </Button>
+        {cell.chartType === ChartType.BAR && (
+          <div className="dashboard-cell__pagination-wrapper">
+            <span style={{margin: '0 10px'}}>Page {currentPage}</span>
+            <Button
+              className="open-dialog__button"
+              isDisabled={currentPage === 1}
+              onPress={handlePrevPage}
+            >
+              &larr;
+            </Button>
+            <Button
+              className="open-dialog__button"
+              isDisabled={
+                currentPage * BAR_COLUMNS_PER_PAGE >= cellData.data.length
+              }
+              onPress={handleNextPage}
+            >
+              &rarr;
+            </Button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 };

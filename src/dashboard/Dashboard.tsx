@@ -1,6 +1,5 @@
 import React, {FunctionComponent, useContext, useState} from 'react';
 import {DashboardContext} from '../context/dashboard';
-import {Button} from 'react-aria-components';
 import {Cell} from './Cell';
 import type {Cell as CellType} from '../types/cell';
 import {DeleteCellOverlay} from '../overlays/DeleteCell';
@@ -26,15 +25,11 @@ export const DashboardPage: FunctionComponent = () => {
     <div className="dashboard-page__wrapper">
       {cells.length ? (
         cells.map((cell) => (
-          <div key={cell.id} className="dashboard-cell__wrapper">
-            <Cell cell={cell} />
-            <Button
-              className="open-dialog__button"
-              onPress={() => setSelectedCell(cell)}
-            >
-              &#128465;
-            </Button>
-          </div>
+          <Cell
+            key={cell.id}
+            cell={cell}
+            handleDeleteClick={() => setSelectedCell(cell)}
+          />
         ))
       ) : (
         <EmptyDashboardCTA />
