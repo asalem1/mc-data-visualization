@@ -43,13 +43,13 @@ export const getClimateDataByCategory = (cell: Cell) => {
     dates: [] as string[],
   } as any;
 
-  for (let i = 0; i < rows.length; i++) {
-    const values = rows[i].split(',');
+  rows.forEach((row) => {
+    const values = row.split(',');
     const date = values[dateIndex];
     const value = Number(values[categoryIndex]).toFixed(2);
     result.dates.push(date);
     result.data.push(parseFloat(value));
-  }
+  });
 
   return result;
 };

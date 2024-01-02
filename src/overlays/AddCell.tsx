@@ -10,14 +10,14 @@ import {DashboardContext} from '../context/dashboard';
 import {ChartType} from '../types/chart';
 import {Cell} from '../types/cell';
 import {v4 as uuidv4} from 'uuid';
-import {getClimateCategories} from '../api/climate';
 import {Category} from '../types/category';
 import {formatCategory} from '../utils/format';
+import useClimateCategories from '../hooks/useClimateCategories';
 
 export const AddCell = () => {
   const {add} = useContext(DashboardContext);
+  const {categories} = useClimateCategories();
   const [isOpen, setIsOpen] = useState(false);
-  const [categories, setCategories] = useState<Category[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<Category>();
   const [chartType, setChartType] = useState(ChartType.LINE);
   const [cellName, setCellName] = useState('');
@@ -49,23 +49,19 @@ export const AddCell = () => {
     resetState();
   };
 
-  const handleClimateCategoryChange = (value: Category) => {
+  const handleClimateCategoryChange = useCallback((value: Category) => {
     setSelectedCategory(value);
-  };
+  }, []);
 
   const handleSetChartType = (value: ChartType) => {
     setChartType(value);
   };
 
-  const getCategories = useCallback(() => {
-    const climateCategories = getClimateCategories();
-    setCategories(Array.from(climateCategories));
-    handleClimateCategoryChange(climateCategories[0]);
-  }, []);
-
   useEffect(() => {
-    getCategories();
-  }, [getCategories]);
+    if (categories.length > 0) {
+      handleClimateCategoryChange(categories[0]);
+    }
+  }, [categories, handleClimateCategoryChange]);
 
   return (
     <>

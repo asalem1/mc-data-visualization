@@ -30,8 +30,10 @@ export const Cell = ({cell, handleDeleteClick}: Props) => {
   }, [cell]);
 
   useEffect(() => {
-    getCellData();
-  }, [cell.id]);
+    if (cell.id) {
+      getCellData();
+    }
+  }, [cell.id, getCellData]);
 
   const handleNextPage = () => {
     setCurrentPage(currentPage + 1);
