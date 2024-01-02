@@ -1,4 +1,4 @@
-import {formatCategory} from '../format';
+import {formatCategory} from '../../utils/format';
 
 describe('formatCategory', () => {
   test('converts mean_temp to Mean Temp', () => {
